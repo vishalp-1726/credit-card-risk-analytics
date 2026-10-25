@@ -1,0 +1,23 @@
+[project]
+name = "credit-card-risk-analytics"
+version = "0.1.0"
+description = "Why credit-card 30+ DPD is rising, and what Collections and Credit Policy should do (SQL, Python, Tableau)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "openpyxl",
+    "pandas>=3.0.6",
+    "psycopg[binary]>=3.3.6",
+    "python-dotenv>=1.2.4",
+    "pyyaml>=6.0.3",
+    "scipy>=1.18.1",
+    "sqlalchemy>=2.1.4",
+    "statsmodels>=0.15.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+]

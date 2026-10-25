@@ -1,0 +1,15 @@
+# Project settings. All business inputs are kept here.
+# To change one (e.g. team capacity), change it here, not in the code.
+project:
+  bank: "Velmora Bank"
+  product: "Credit Cards"
+
+collections:
+  capacity_pct: 0.15    # team can work 15% of the delinquent each month
+
+approval:
+  target_rate: 0.90   # approval rate used for the main policy comparison
+  tradeoff_rates: [0.85, 0.90, 0.95]    # approval rates compared in the trade-off table
+
+refresh:
+  landing_deadline_day: 15    # last month's extract must land in data/landing by the 15th of current month
