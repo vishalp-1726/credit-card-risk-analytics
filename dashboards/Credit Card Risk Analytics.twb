@@ -43,7 +43,7 @@
   <datasources>
 <datasource hasconnection='false' inline='true' name='Parameters' version='18.1'>
 <aliases enabled='yes' />
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -73,7 +73,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -341,12 +341,6 @@
 </column>
 <column caption='Last 13 months' datatype='boolean' name='[Last 13 months]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='[statement_month] &gt;= DATEADD(&apos;month&apos;, -12, [Parameters].[Statement month to]) AND [statement_month] &lt;= [Parameters].[Statement month to]' />
-</column>
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
 </column>
 <column caption='New card group' datatype='string' name='[New card group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IF [book_part] = &quot;New cards&quot; THEN IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Co-brand&quot;, &quot;Other&quot;) END' />
@@ -1421,7 +1415,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -1451,7 +1445,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -1497,12 +1491,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -1876,7 +1864,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -1906,7 +1894,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -1952,12 +1940,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -2333,7 +2315,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -2363,7 +2345,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -2409,12 +2391,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -2809,7 +2785,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -2839,7 +2815,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -2885,12 +2861,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -3264,7 +3234,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -3294,7 +3264,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -3340,12 +3310,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -3721,7 +3685,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -3751,7 +3715,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -3797,12 +3761,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -4185,7 +4143,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -4215,7 +4173,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -4261,12 +4219,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -4640,7 +4592,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -4670,7 +4622,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -4716,12 +4668,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -5097,7 +5043,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -5127,7 +5073,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -5173,12 +5119,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -5573,7 +5513,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -5603,7 +5543,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -5649,12 +5589,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -6028,7 +5962,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -6058,7 +5992,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -6104,12 +6038,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -6485,7 +6413,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -6515,7 +6443,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -6561,12 +6489,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -6961,7 +6883,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -6991,7 +6913,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -7037,12 +6959,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -7416,7 +7332,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -7446,7 +7362,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -7492,12 +7408,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -7873,7 +7783,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -7903,7 +7813,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -7949,12 +7859,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -8349,7 +8253,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -8379,7 +8283,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -8425,12 +8329,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -8804,7 +8702,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -8834,7 +8732,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -8880,12 +8778,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -9264,7 +9156,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -9294,7 +9186,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -9340,12 +9232,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -9740,7 +9626,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -9770,7 +9656,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -9981,7 +9867,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -10011,7 +9897,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -10217,7 +10103,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -10247,7 +10133,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -10474,7 +10360,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -10504,7 +10390,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -10710,7 +10596,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -10740,7 +10626,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -10946,7 +10832,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -10976,7 +10862,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -11220,7 +11106,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -11250,7 +11136,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -11296,12 +11182,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -11675,7 +11555,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -11705,7 +11585,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -11751,12 +11631,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -12132,7 +12006,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -12162,7 +12036,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -12208,12 +12082,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -13714,7 +13582,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -13744,7 +13612,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -13790,12 +13658,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -14228,7 +14090,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -14258,7 +14120,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -14304,12 +14166,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -14689,7 +14545,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -14719,7 +14575,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -14765,12 +14621,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -15148,7 +14998,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -15178,7 +15028,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -15224,12 +15074,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -15647,7 +15491,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -15677,7 +15521,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -15827,7 +15671,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -15857,7 +15701,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -15914,12 +15758,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>
@@ -16378,7 +16216,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -16408,7 +16246,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -16624,7 +16462,7 @@
 <datasource name='Parameters' />
 </datasources>
 <datasource-dependencies datasource='Parameters'>
-<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:statement_month:qk]' type='quantitative' value='#2024-09-01#'>
+<column caption='Statement month from' datatype='date' default-format='*mmm-yyyy' name='[Statement month from]' param-domain-type='list' role='measure' type='quantitative' value='#2024-09-01#'>
 <calculation class='tableau' formula='#2024-09-01#' />
 <members>
 <member value='#2024-09-01#' />
@@ -16654,7 +16492,7 @@
 <member value='#2026-09-01#' />
 </members>
 </column>
-<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' source-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[none:Month with a year before:qk]' default-value-field='[federated.1jo6z8vktf44kwz4oxpa92ta3kbf].[Latest month]' type='quantitative' value='#2026-09-01#'>
+<column caption='Statement month to' datatype='date' default-format='*mmm-yyyy' name='[Statement month to]' param-domain-type='list' role='measure' type='quantitative' value='#2026-09-01#'>
 <calculation class='tableau' formula='#2026-09-01#' />
 <members>
 <member value='#2025-09-01#' />
@@ -16700,12 +16538,6 @@
 <column caption='Balance' datatype='real' name='[balance]' role='measure' type='quantitative' />
 <column caption='Dpd30 Balance' datatype='real' name='[dpd30_balance]' role='measure' type='quantitative' />
 <column caption='Write Offs' datatype='integer' default-format='n#,##0' name='[write_offs]' role='measure' type='quantitative' />
-<column caption='Latest month' datatype='date' default-format='*mmm-yyyy' name='[Latest month]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='{FIXED : MAX([statement_month])}' />
-</column>
-<column caption='Month with a year before' datatype='date' default-format='*mmm-yyyy' name='[Month with a year before]' role='dimension' type='ordinal'>
-  <calculation class='tableau' formula='IF [statement_month] &gt;= DATEADD(&quot;month&quot;, 12, {FIXED : MIN([statement_month])}) THEN [statement_month] END' />
-</column>
 <column caption='Channel group' datatype='string' name='[Channel group]' role='dimension' type='nominal'>
   <calculation class='tableau' formula='IIF([channel] = &quot;Fintech Co-brand&quot;, &quot;Fintech Co-brand&quot;, &quot;Other channels&quot;)' />
 </column>

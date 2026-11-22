@@ -104,8 +104,8 @@ panel on the left, and each tab starts with a row of KPI cards (value, change ba
 Drivers add up monthly counts (`report_month_cube`), so the filters change every card and chart there: the cards
 and the "a year before" comparisons use the "Statement month to" month, the trend charts show the months between
 "from" and "to", and the vintage curves show what was known by the "to" month. The "to" list starts 12 months into
-the data (so every year-ago comparison exists) and grows by itself with a monthly refresh. There is no channel or
-book-part filter: the charts compare those groups, so filtering them would leave nothing to compare.
+the data (so every year-ago comparison exists). There is no channel or book-part filter: the charts compare those
+groups, so filtering them would leave nothing to compare.
 
 | Tab | For | What it shows | Filters |
 |---|---|---|---|
@@ -217,7 +217,9 @@ uv run python -m src.monthly_refresh                   # load, check, export the
 uv run python -m src.monthly_refresh --month 2026-09   # re-run one month, e.g. after a fix
 ```
 
-Then refresh the extracts in Tableau and publish again.
+Then refresh the extracts in Tableau, add the new month to the two month filters (Edit parameter → Add values from
+→ statement_month, and set "Statement month to" to the new month) and publish again. The month lists are fixed on
+purpose: a list filled from the data when the workbook opens works in Tableau Desktop but comes up empty on Tableau Public.
 
 ## Limitations
 
