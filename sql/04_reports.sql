@@ -99,3 +99,62 @@ select dimension, segment, accounts, dpd30, round(p, 4) as dpd30_rate,
 from agg
 where accounts >= 30
 order by 1, 2;
+
+-- 6. Monthly counts by channel, book part, bureau score band and the segment columns.
+--    Tableau adds these rows up and works out each rate itself, so a filter changes every tile and chart the same way.
+--    No card or customer IDs; only counts and balances.
+drop table if exists report_month_cube;
+create table report_month_cube as
+select s.statement_month,
+       s.channel,
+       case when s.open_month < '2025-04' or s.opened_before_window then 'Existing book' else 'New cards' end as book_part,
+       case when cu.bureau_score is null then 'Missing' when cu.bureau_score < 500 then '<500'
+            when cu.bureau_score < 600 then '500-599' when cu.bureau_score < 700 then '600-699'
+            else '700+' end                                                    as score_band,
+       case when s.utilisation is null then 'Missing' when s.utilisation < 0.3 then '1: <30%'
+            when s.utilisation < 0.7 then '2: 30-70%' when s.utilisation < 0.9 then '3: 70-90%'
+            else '4: 90%+' end                                                 as util_band,
+       cu.city_tier,
+       cu.income_type,
+       case when date_part('year', age(s.month_date, cu.date_of_birth)) < 30 then '1: <30'
+            when date_part('year', age(s.month_date, cu.date_of_birth)) < 40 then '2: 30-39'
+            when date_part('year', age(s.month_date, cu.date_of_birth)) < 50 then '3: 40-49'
+            else '4: 50+' end                                                  as age_band,
+       count(*) filter (where s.carries_balance)                               as active_accounts,
+       count(*) filter (where s.carries_balance and s.dpd_days >= 30)          as dpd30_accounts,
+       coalesce(sum(s.balance) filter (where s.carries_balance), 0)            as balance,
+       coalesce(sum(s.balance) filter (where s.carries_balance and s.dpd_days >= 30), 0) as dpd30_balance,
+       count(*) filter (where s.account_status = 'CHARGED_OFF')                as write_offs
+from v_statements s
+join customers cu using (customer_id)
+where s.statement_month >= '2024-09'
+group by 1, 2, 3, 4, 5, 6, 7, 8
+having count(*) filter (where s.carries_balance) > 0 or count(*) filter (where s.account_status = 'CHARGED_OFF') > 0;
+
+-- 7. Vintage counts split by bureau score band, so the vintage chart can follow the score filter.
+--    Same vintages, channel groups and months on book as report_vintage (only the counts are split).
+drop table if exists report_vintage_score;
+create table report_vintage_score as
+with first_bad as (
+    select card_id, min(months_on_book) filter (where dpd_days >= 30) as mob_30
+    from v_statements group by card_id
+),
+v as (
+    select case when c.channel = 'Fintech Co-brand' then 'Fintech Co-brand' else 'Other channels' end as channel_group,
+           to_char(to_date(c.open_month, 'YYYY-MM'), 'YYYY-"Q"Q')  as vintage,
+           case when cu.bureau_score is null then 'Missing' when cu.bureau_score < 500 then '<500'
+                when cu.bureau_score < 600 then '500-599' when cu.bureau_score < 700 then '600-699'
+                else '700+' end                                     as score_band,
+           f.mob_30
+    from cards c
+    join first_bad f using (card_id)
+    join customers cu using (customer_id)
+    where not c.opened_before_window and c.open_month >= '2023-01'
+)
+select r.vintage, r.channel_group, v.score_band, r.mob,
+       count(*)                                         as cards,
+       count(*) filter (where coalesce(v.mob_30, 999) <= r.mob) as ever_30_cards
+from report_vintage r
+join v on v.vintage = r.vintage and v.channel_group = r.channel_group
+group by 1, 2, 3, 4
+order by 1, 2, 3, 4;

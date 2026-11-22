@@ -8,13 +8,13 @@
 An end-to-end risk analytics project for the credit-card book of **Velmora Bank**: find out why the 30+ DPD
 rate is rising, decide whom Collections should call, and test whether a new approval cut-off would help.
 
-**[View the live dashboard on Tableau Public](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/1Overview)**
+**[View the live dashboard on Tableau Public](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/Overview)**
 · [Report (PDF)](reports/deck.pdf)
 · [Metric definitions](docs/metric_definitions.md)
 · [Notebooks](notebooks/)
 · [SQL](sql/)
 
-[![Dashboard tab 1: Overview](dashboards/tab1_overview.png)](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/1Overview)
+[![Dashboard tab 1: Overview](dashboards/tab1_overview.png)](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/Overview)
 
 ## Contents
 
@@ -99,13 +99,19 @@ Policy teams as an Excel hand-off. The full story for the Head of Risk is in the
 
 ## Dashboard
 
-Three tabs on Tableau Public, one per audience. Buttons at the top move between the tabs.
+Three tabs on Tableau Public, one per audience. Buttons at the top move between the tabs, the filters sit in a
+panel on the left, and each tab starts with a row of KPI cards (value, change badge, comparison). Overview and
+Drivers add up monthly counts (`report_month_cube`), so the filters change every card and chart there: the cards
+and the "a year before" comparisons use the "Statement month to" month, the trend charts show the months between
+"from" and "to", and the vintage curves show what was known by the "to" month. The "to" list starts 12 months into
+the data (so every year-ago comparison exists) and grows by itself with a monthly refresh. There is no channel or
+book-part filter: the charts compare those groups, so filtering them would leave nothing to compare.
 
-| Tab | For | What it shows |
-|---|---|---|
-| [1 Overview](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/1Overview) | Head of Risk | KPI tiles, 30+ DPD rate by accounts and by balance, where the extra late accounts came from, rate by book part, vintage curves. Filters: month, book part, channel group |
-| [2 Drivers](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/2Drivers) | Risk analysts | Segment rates with 95% CIs (choose the dimension), co-brand vs other channels at the same score, roll rates, utilisation in the existing book |
-| [3 Actions](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/3Actions) | Collections, Credit Policy | Call effect by bucket, call-order back-test, value range, approval trade-off with an approval-rate parameter |
+| Tab | For | What it shows | Filters |
+|---|---|---|---|
+| [Overview](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/Overview) | Head of Risk | 30+ DPD rate vs a year ago, accounts, write-offs, co-brand and existing-book rates; 30+ DPD rate by accounts and by balance, accounts carrying a balance, where the extra late accounts came from and the rate by book part (the 12 months to the selected month) | Statement month from / to, bureau score band |
+| [Drivers](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/Drivers) | Risk analysts | Segment rates with 95% CIs (choose the split), co-brand vs other channels at the same score, utilisation in the existing book, vintage curves by channel | The same three, plus the segments split |
+| [Actions](https://public.tableau.com/app/profile/vishal.parmar7472/viz/CreditCardRiskAnalytics_17928708240000/Actions) | Collections, Credit Policy | Results of the call test, the call-order back-test, roll rates, value range and the approval trade-off (fixed) | Call test metric, approval rate |
 
 | Drivers | Actions |
 |---|---|
@@ -175,7 +181,7 @@ credit-card-risk-analytics/
 │   ├── 01_create_tables.sql      # one table per extract, plus load / check / refresh logs
 │   ├── 02_clean.sql              # the six data fixes
 │   ├── 03_views.sql              # shared definitions: buckets, utilisation, months on book
-│   └── 04_reports.sql            # monthly KPIs, segments with 95% CIs, roll rates, vintages
+│   └── 04_reports.sql            # monthly KPIs, segments with 95% CIs, roll rates, vintages, monthly counts for Tableau
 ├── src/
 │   ├── load_data.py              # load the history or a new month into PostgreSQL
 │   ├── dq_checks.py              # data-quality checks

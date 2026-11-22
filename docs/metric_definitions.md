@@ -44,3 +44,13 @@ Every number in this project uses one of these definitions. Each one says exactl
 | Approval rate | Cards a policy would approve ÷ all cards in that group (a simulation on cards that were approved in reality) | `report_policy_curve` |
 | Policy A / Policy B | A = one bureau-score cut-off for every channel. B = a separate cut-off for co-brand, chosen so that total approvals are the same as A | `report_policy_tradeoff` |
 | Swap-in / swap-out | Swap-in = cards B approves and A declines. Swap-out = cards A approves and B declines | `report_swap_set` |
+
+## Dashboard
+
+The Tableau dashboard adds up `report_month_cube` (counts and balances by month, channel, book part, bureau score
+band and the segment columns) and `report_vintage_score`, and works out each rate itself, so the filters change
+every number on Overview and Drivers. Cards and comparisons use the "Statement month to" month against 12 months
+before it; the filter starts on the latest month in the data (Sep-2026). Set it to Aug-2026 to get the notebook
+numbers for Aug-2025 → Aug-2026 (for example +983 extra 30+ accounts, +786 of them new co-brand cards). The
+6-month bad rate at the same score (`report_cobrand_same_score`) is a fixed cohort, so only the score band filter
+changes it.

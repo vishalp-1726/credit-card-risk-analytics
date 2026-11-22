@@ -10,12 +10,13 @@ from src.collections_list import build_call_list
 from src.config import PROCESSED
 from src.db import query
 
-# dashboard tables: totals per month / segment / bucket only, no card IDs or personal data
+# dashboard tables: counts and totals only, no card IDs or personal data
+#   report_month_cube, report_vintage_score, report_cobrand_same_score: the filters apply (Tableau adds the counts up)
+#   the rest: last 12 months of roll rates and the results of the tests, which the filters don't change
 TABLES = [
-    "report_monthly_kpi", "report_book_segments", "report_q1_contribution", "report_existing_book_util",
-    "report_roll_rates", "report_vintage", "report_segments", "report_cobrand_gap", "report_cobrand_same_score",
-    "report_call_effect", "report_collections_policy", "report_collections_value", "report_collections_backtest",
-    "report_collections_range", "report_policy_curve", "report_swap_set", "report_policy_tradeoff",
+    "report_month_cube", "report_vintage_score", "report_cobrand_same_score",
+    "report_roll_rates", "report_call_effect", "report_collections_policy", "report_collections_value",
+    "report_collections_backtest", "report_collections_range", "report_policy_tradeoff",
 ]
 
 
